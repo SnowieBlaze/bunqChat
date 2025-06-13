@@ -8,6 +8,10 @@ class UserModel
 {
     private PDO $db;
 
+    /**
+     * Constructor that passes the database object to the model.
+     * @param PDO $db - the database object.
+     */
     public function __construct(PDO $db) {
         $this->db = $db;
     }
