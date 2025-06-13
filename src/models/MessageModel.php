@@ -26,12 +26,12 @@ class MessageModel
      * @return array|null - The messages in JSON format if available.
      *                      Null otherwise.
      */
-    public function getAllMessagesFromGroup(int $groupId): ?array{
+    public function getAllMessagesFromGroup(int $groupId): ?array {
         $stmt = $this->db->prepare("SELECT * FROM messages WHERE group_id=:groupId");
         $stmt->bindParam(':groupId', $groupId);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $result ? $result : null;
+        return $result ?: null;
     }
 
     /**
@@ -46,9 +46,9 @@ class MessageModel
      */
     public function createMessage(string $content, int $authorId, int $groupId): int {
         $stmt = $this->db->prepare("
-        INSERT INTO messages (content, author_id, group_id) 
-        VALUES (:content, :author_id, :group_id)
-    ");
+            INSERT INTO messages (content, author_id, group_id) 
+            VALUES (:content, :author_id, :group_id)
+        ");
         $stmt->bindParam(':content', $content);
         $stmt->bindParam(':author_id', $authorId);
         $stmt->bindParam(':group_id', $groupId);
