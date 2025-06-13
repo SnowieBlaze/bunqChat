@@ -4,6 +4,7 @@ require __DIR__ . "/../vendor/autoload.php";
 use Slim\Factory\AppFactory;
 
 $app = AppFactory::create();
+$app->addBodyParsingMiddleware();
 $pdo = new PDO("sqlite:" . __DIR__ . "/../db/chat.sqlite");
 
 $userRoutes = require __DIR__ . "/../src/routes/userRoutes.php";
