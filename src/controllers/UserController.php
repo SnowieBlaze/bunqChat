@@ -42,23 +42,45 @@ class UserController
 
     /**
      * Function to get user data by ID.
-     * @param int $id
-     * @return array|null - User data array if found.
-     *                      Null otherwise.
+     * @param int $id - The id of the user.
+     * @return array - Success status and user data if found.
+     *                 False and error otherwise.
      */
-    public function getUserById(int $id): ?array
+    public function getUserById(int $id): array
     {
-        return $this->userModel->getUserById($id);
+        try {
+            $user = $this->userModel->getUserById($id);
+            return [
+                "success" => true,
+                "user" => $user,
+            ];
+        } catch (\Exception $e) {
+            return [
+                "success" => false,
+                "error" => $e->getMessage(),
+            ];
+        }
     }
 
     /**
      * Function to get user data by username.
-     * @param string $username
-     * @return array|null - User data array if found.
-     *                      Null otherwise.
+     * @param string $username - The username of the user.
+     * @return array - Success status and user data if found.
+     *                 False and error otherwise.
      */
-    public function getUserByUsername(string $username): ?array
+    public function getUserByUsername(string $username): array
     {
-        return $this->userModel->getUserByUsername($username);
+        try {
+            $user = $this->userModel->getUserByUsername($username);
+            return [
+                "success" => true,
+                "user" => $user,
+            ];
+        } catch (\Exception $e) {
+            return [
+                "success" => false,
+                "error" => $e->getMessage(),
+            ];
+        }
     }
 }
