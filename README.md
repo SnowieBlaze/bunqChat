@@ -13,7 +13,12 @@ See the full schema in `src/database/schema.sql`.
 
 ## Run app
 
-From project root, run `php -S localhost:8080 -t public`. Then, the API will be available at `http://localhost:8080`.
+First, it is necessary to download dependencies using composer. For that, run `composer install` in root.
+
+Then, it is necessary to generate the sqlite file. Create a db directory under root, and in that directory create a chat.sqlite file.
+To populate the file, you can run `sqlite3 db/chat.sqlite < src/database/schema.sql`
+
+Afterwards, from project root, run `php -S localhost:8080 -t public`. Then, the API will be available at `http://localhost:8080`.
 
 ## Routes
 
