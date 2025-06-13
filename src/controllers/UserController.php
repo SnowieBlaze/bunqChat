@@ -10,7 +10,7 @@ class UserController
     private UserModel $userModel;
 
     /**
-     * Constructor that instantiates userModel with a database object.
+     * Constructor that instantiates userModel using a database object.
      * @param PDO $db - the database object.
      */
     public function __construct(PDO $db)
@@ -19,7 +19,7 @@ class UserController
     }
 
     /**
-     * Create a new user.
+     * Function to create a new user.
      * @param string $username - The username from request.
      * @return array - Success status and user Id if successful.
      *                 False and error otherwise.
@@ -41,7 +41,7 @@ class UserController
     }
 
     /**
-     * Get user data by ID.
+     * Function to get user data by ID.
      * @param int $id
      * @return array|null - User data array if found.
      *                      Null otherwise.
@@ -52,7 +52,7 @@ class UserController
     }
 
     /**
-     * Get user data by username.
+     * Function to get user data by username.
      * @param string $username
      * @return array|null - User data array if found.
      *                      Null otherwise.
