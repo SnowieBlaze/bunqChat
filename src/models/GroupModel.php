@@ -64,11 +64,29 @@ class GroupModel
      */
     public function getGroupByName(string $name): ?array {
         $stmt = $this->db->prepare("SELECT * FROM groups WHERE name=:name");
-        $stmt->bindParam(':name', name);
+        $stmt->bindParam(':name', $name);
         $stmt->execute();
         $result =  $stmt->fetch(PDO::FETCH_ASSOC);
         return $result ?: null;
     }
+
+    /**
+     * Function to get groups by creator.
+     * It first prepares the statement.
+     * Then, it binds the parameter.
+     * Finally, it executes the statement.
+     * @param int creator_id - The ID of the creator of the groups.
+     * @return array|null - The groups in a JSON format if found.
+     *                      Null otherwise.
+     */
+    public function getGroupsByCreator(int $creator_id): ?array {
+        $stmt = $this->db->prepare("SELECT * FROM groups WHERE creator_id = :creator_id");
+        $stmt->bindParam(':creator_id', $creator_id);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result ?: null;
+    }
+
 
     /**
      * Function to get all groups.
